@@ -19,8 +19,17 @@
             position: fixed;
             top: -1px;
             left: -1px;
-            bottom: -91px;
+            bottom: -1px;
             right: -65px;
+        }
+
+        .frame-container-left {
+            border: 0;
+            position: fixed;
+            top: -80px;
+            left: -1px;
+            bottom: -1px;
+            width: 400px;
         }
 
         #clock {
@@ -59,6 +68,10 @@
 
 <body onload="startTime()">
     <div class="frame-container">
+        <iframe
+            src="https://moovitapp.com/?from=%D7%90%D7%91%D7%9F%20%D7%92%D7%91%D7%99%D7%A8%D7%95%D7%9C%20111&to=%D7%A8%D7%9B%D7%91%D7%AA%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91%20%D7%94%D7%A9%D7%9C%D7%95%D7%9D&fll=32.086807_34.782151&tll=32.073341_34.793202&metroId=1&lang=en"></iframe>
+    </div>
+    <div class="frame-container-left">
         <iframe
             src="https://moovitapp.com/?from=%D7%90%D7%91%D7%9F%20%D7%92%D7%91%D7%99%D7%A8%D7%95%D7%9C%20111&to=%D7%A8%D7%9B%D7%91%D7%AA%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91%20%D7%94%D7%A9%D7%9C%D7%95%D7%9D&fll=32.086807_34.782151&tll=32.073341_34.793202&metroId=1&lang=en"></iframe>
     </div>
