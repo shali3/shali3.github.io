@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Bus Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .frame-container {
+            border: 0;
+            position: fixed;
+            top: -1px;
+            left: -1px;
+            bottom: -1px;
+            right: -65px;
+        }
+
+        #clock {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 352px;
+            height: 75px;
+            line-height: 75px;
+            background: #292A30;
+            text-align: center;
+            font-size: 60px;
+            font-family: sans-serif;
+            color: white;
+        }
+    </style>
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            h = checkTime(h);
+            m = checkTime(m);
+            var clock = document.getElementById('clock');
+            if (clock) {
+                clock.innerHTML = h + ":" + m;
+            }
+            var t = setTimeout(startTime, 1000);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+</head>
+
+<body onload="startTime()">
+    <div class="frame-container">
+        <iframe
+            src="https://moovitapp.com/?from=%D7%90%D7%91%D7%9F%20%D7%92%D7%91%D7%99%D7%A8%D7%95%D7%9C%20111&to=%D7%A8%D7%9B%D7%91%D7%AA%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91%20%D7%94%D7%A9%D7%9C%D7%95%D7%9D&fll=32.086807_34.782151&tll=32.073341_34.793202&metroId=1&lang=en"></iframe>
+    </div>
+    <div id="clock"></div>
+</body>
+
+</html>
