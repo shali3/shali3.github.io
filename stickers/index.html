@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <style>
+        *,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16pt;
+        }
+
+        .editor {
+            padding: 30px 30px 0 30px;
+        }
+        .editor .section{
+            margin-top: 20px;
+        }
+        .editor textarea{
+            height: 300px;
+        }
+
+        .page {
+            position: relative;
+            width: 210mm;
+            height: 307mm;
+            padding-left: 9mm;
+            padding-top: 2mm;
+            border: 2px solid black;
+        }
+
+        .new-offset {
+            position: absolute;
+            font-size: 11pt;
+            line-height: 5.5mm;
+        }
+
+        .sticker {
+            width: 47.5mm;
+            height: 11mm;
+            border: 0.5mm solid black;
+            text-align: center;
+            line-height: 11mm;
+            border-radius: 3mm;
+            float: left;
+            margin-bottom: 2.75mm;
+            margin-right: 2.75mm;
+        }
+
+        #item80 {
+            margin-bottom: 0;
+        }
+
+        #item81 {
+            margin-bottom: 0;
+        }
+
+        #item82 {
+            margin-bottom: 0;
+        }
+
+        #item83 {
+            margin-bottom: 0;
+        }
+
+        @media print {
+            .editor {
+                display: none !important;
+            }
+
+            .sticker {
+                border-color: white;
+            }
+
+            .page {
+                border-color: white;
+            }
+        }
+    </style>
+    <script>
+        function render() {
+            var stickersText = "\n".repeat(Math.max(0,document.getElementsByName("offset")[0].value))
+            stickersText += document.getElementsByName("stickers")[0].value.trim()
+            stickersText = stickersText.split("\n")
+            var newOffset = stickersText.length
+            var html = "";
+            html += stickersText.map((x, i) => '<div class="sticker" id="item' + i + '">' + x + '</div>').join('');
+            html += renderNewOffset(newOffset);
+            document.getElementsByClassName("page")[0].innerHTML = html;
+        }
+        function renderNewOffset(newOffset) {
+            var side = newOffset % 2 == 0 ? "right" : "left";
+            var top = 2 + Math.floor((newOffset - 1) / 2) * 7.5
+            var styleText = 'top: ' + top + 'mm; ' + side + ': 2mm;';
+            return '<div class="new-offset" style="' + styleText + '">' + newOffset + '</div>'
+        }
+    </script>
+</head>
+
+<body onload="render()">
+    <div class="editor">
+        <div class="section">
+            <h1>Sticker text:</h1>
+            <textarea name="stickers" onkeyup="render()"></textarea>
+        </div>
+        <div class="section">
+            <h1>Offset:</h1>
+            <input name="offset" onchange="render()" onkeyup="render()" type="number" value="0" />
+        </div>
+        <div class="section">
+            <h1>Preview:</h1>
+        </div>
+
+    </div>
+    <div class="page"></div>
+</body>
+
+</html>
